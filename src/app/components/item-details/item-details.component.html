@@ -1,0 +1,27 @@
+<div>
+  <p *ngIf="!meal; else showMeal">No data found!</p>
+  <ng-template #showMeal>
+    <div class="card">
+      <img
+        id="item-image"
+        [src]="meal.strMealThumb"
+        class="card-img-top"
+        [alt]="meal.strMeal"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ meal.strMeal }}</h5>
+        <p class="card-text">
+          {{ meal.strInstructions }}
+        </p>
+        <p class="card-text">
+          <a
+            href="{{ meal.strYoutube }}"
+            target="_blank"
+            class="btn btn-primary"
+            >View video</a
+          >
+        </p>
+      </div>
+    </div>
+  </ng-template>
+</div>

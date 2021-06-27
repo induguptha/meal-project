@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12" *ngFor="let recipe of randomRecipeData">
+      <h4>{{ recipe.strCategory }}</h4>
+      <p>{{ recipe.strArea }}</p>
+      <div class="row">
+        <div id="mytext" class="col-lg-8 padding-text">
+          {{ recipe.strInstructions }}
+        </div>
+        <div id="myImage" class="col-lg-4">
+          <img
+            [src]="recipe.strMealThumb"
+            alt="{{ recipe.strArea }}"
+            class="img-responsive"
+            style="max-height: 300px; padding-left: 20px"
+          />
+        </div>
+      </div>
+      <div *ngIf="recipe.strYoutube">
+        <a
+          href="{{ recipe.strYoutube }}"
+          target="_blank"
+          class="btn btn-primary"
+          >View video</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { SharedService } from './../../services/shared.service';
-import { map, subscribeOn } from 'rxjs/operators';
+
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-result',
@@ -14,10 +15,16 @@ export class SearchResultComponent implements OnInit {
   meals: any = [];
   constructor(
     private sharedService: SharedService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private router: Router,
+    private activatedroute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.activatedroute.queryParams.subscribe((params) => {
+      this.searchRecipe(params.input);
+    });
+
     this.sharedService.getSearchData().subscribe((data) => {
       console.log(data);
       if (data.length > 0) {
@@ -37,5 +44,9 @@ export class SearchResultComponent implements OnInit {
         return of([]);
       })
     );
+  }
+
+  gotoDetails(id: Number) {
+    this.router.navigate(['/searchResults', id]);
   }
 }

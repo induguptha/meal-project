@@ -1,7 +1,9 @@
 <div *ngIf="meals.length > 0">
   <h2>Select a meal to view details</h2>
   <ul *ngFor="let meal of meals">
-    <li>{{ meal.strMeal }}</li>
+    <li class="search-item" (click)="gotoDetails(meal.idMeal)">
+      {{ meal.strMeal }}
+    </li>
   </ul>
 </div>
 <h2 *ngIf="meals.length == 0">No meals found!!</h2>

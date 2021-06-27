@@ -16,4 +16,8 @@ export class HttpService {
     console.log(`${Constants.SEARCH_URL}${recipe}`);
     return this.http.get(`${Constants.SEARCH_URL}${recipe}`);
   }
+
+  getRecipeById(recipeId: string) {
+    return this.http.get(`${Constants.MEAL_ITEM_DETAIL}${recipeId}`);
+  }
 }

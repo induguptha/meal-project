@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Recipe } from '../../models/recipe.model';
-import { HttpService } from '../../services/http.service';
+import { Recipe } from '../../../models/recipe.model';
+import { HttpService } from '../../../services/http.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -21,8 +21,6 @@ export class RecipeDetailComponent implements OnInit {
           console.log(this.randomRecipeData);
         })
       )
-      .subscribe((data) => {
-        //this.randomRecipeData = data;
-      });
+      .subscribe();
   }
 }

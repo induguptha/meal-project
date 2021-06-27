@@ -15,6 +15,8 @@ export class SearchBarComponent implements OnInit {
   goToSearchResults(searchInput: string) {
     console.log(searchInput);
     this.sharedService.updateSearchData(searchInput);
-    this.router.navigate(['/searchResults']);
+    this.router.navigate(['/searchResults'], {
+      queryParams: { input: searchInput },
+    });
   }
 }
