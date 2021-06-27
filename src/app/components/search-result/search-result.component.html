@@ -1,1 +1,7 @@
-<p>search-result works!</p>
+<div *ngIf="meals.length > 0">
+  <h2>Select a meal to view details</h2>
+  <ul *ngFor="let meal of meals">
+    <li>{{ meal.strMeal }}</li>
+  </ul>
+</div>
+<h2 *ngIf="meals.length == 0">No meals found!!</h2>

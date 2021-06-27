@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Constants from './../../constants';
-import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +13,7 @@ export class HttpService {
   }
 
   searchRecipe(recipe: string) {
+    console.log(`${Constants.SEARCH_URL}${recipe}`);
     return this.http.get(`${Constants.SEARCH_URL}${recipe}`);
   }
 }

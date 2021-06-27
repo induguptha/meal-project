@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { SharedService } from './../../services/shared.service';
-import { map } from 'rxjs/operators';
+import { map, subscribeOn } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-search-result',
@@ -9,6 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./search-result.component.css'],
 })
 export class SearchResultComponent implements OnInit {
+  meals: any = [];
   constructor(
     private sharedService: SharedService,
     private httpService: HttpService
@@ -24,9 +27,14 @@ export class SearchResultComponent implements OnInit {
   }
 
   searchRecipe(data: string) {
-    this.httpService.searchRecipe(data).pipe(
-      map((response) => {
+    this.httpService.searchRecipe(data).subscribe(
+      (response: any) => {
         console.log(response);
+        this.meals = response?.meals;
+      },
+      catchError((error) => {
+        console.log(error);
+        return of([]);
       })
     );
   }
